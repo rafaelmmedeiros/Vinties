@@ -2,10 +2,11 @@
 
 public class Auction
 {
-    public Auction(string seller, decimal reservePrice)
+    public Auction(string seller, decimal reservePrice, DateTime auctionEnd)
     {
         Seller = seller;
         ReservePrice = reservePrice;
+        AuctionEnd = auctionEnd;
     }
 
     public Guid Id { get; set; }
@@ -19,7 +20,7 @@ public class Auction
 
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public DateTime? Updated { get; set; }
-    public DateTime? AuctionEnded { get; set; }
+    public DateTime AuctionEnd { get; set; }
 
     public AuctionStatus Status { get; set; } = AuctionStatus.Live;
 

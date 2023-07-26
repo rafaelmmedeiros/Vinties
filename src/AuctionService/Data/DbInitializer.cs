@@ -18,7 +18,7 @@ public class DbInitializer
 
           var auctions = new List<Auction>
           {
-               new Auction("Mark", 2000)
+               new Auction("Mark", 2000, DateTime.UtcNow.AddDays(7))
                {
                     Id = Guid.NewGuid(),
                     Item = new AuctionItem(
@@ -27,7 +27,7 @@ public class DbInitializer
                          "https://1.bp.blogspot.com/-305fBVmguqg/YGYOPgjJHHI/AAAAAAAAM7s/XFGr5UW2Q5cnXtfmV1m01tDjKYNPnFXZQCLcBGAsYHQ/s1600/Fender%2BStratocaster%2BCandy%2BApple%2BRed%2Bmatching%2Bheadstock.jpg")
                     { Id = Guid.NewGuid(), }
                },
-               new Auction("John", 1000)
+               new Auction("John", 1000, DateTime.UtcNow.AddDays(30))
                {
                     Id = Guid.NewGuid(),
                     Item = new AuctionItem("Les Paul", "Gibson", "A classic guitar", 
