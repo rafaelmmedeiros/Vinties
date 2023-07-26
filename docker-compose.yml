@@ -1,0 +1,12 @@
+﻿services: 
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=rafael666
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes: 
+    pgdata:
+    
