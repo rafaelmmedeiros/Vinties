@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AuctionService.Data.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20230726210619_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230726221612_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,6 @@ namespace AuctionService.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Winner")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

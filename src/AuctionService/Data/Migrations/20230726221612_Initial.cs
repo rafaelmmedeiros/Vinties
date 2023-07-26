@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AuctionService.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace AuctionService.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Seller = table.Column<string>(type: "text", nullable: false),
-                    Winner = table.Column<string>(type: "text", nullable: false),
+                    Winner = table.Column<string>(type: "text", nullable: true),
                     ReservePrice = table.Column<decimal>(type: "numeric", nullable: false),
                     SoldAmount = table.Column<int>(type: "integer", nullable: true),
                     CurrentHigBid = table.Column<int>(type: "integer", nullable: true),
