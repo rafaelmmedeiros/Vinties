@@ -1,29 +1,17 @@
 ﻿namespace AuctionService.Entities;
 
 public class AuctionItem
-{
-    public AuctionItem(string model, string manufacturer, string description, AuctionItemType type, string? serialNumber, int year, string color, string imageUrl)
-    {
-        Model = model;
-        Manufacturer = manufacturer;
-        Description = description;
-        Type = type;
-        SerialNumber = serialNumber;
-        Year = year;
-        Color = color;
-        ImageUrl = imageUrl;
-    }
-
+{ 
     public Guid Id { get; set; }
 
-    public string Model { get; set; }
-    public string Manufacturer { get; set; }
-    public string Description { get; set; }
+    public string Model { get; set; } = null!;
+    public string Manufacturer { get; set; } = null!;
+    public string Description { get; set; } = null!;
     public AuctionItemType Type { get; set; }
     
     public string? SerialNumber { get; set; }
     public int Year { get; set; }
-    public string Color { get; set; }
+    public string Color { get; set; } = null!;
 
     public string? ImageUrl { get; set; }
 

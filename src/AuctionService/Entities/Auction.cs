@@ -2,17 +2,10 @@
 
 public class Auction
 {
-    public Auction(string seller, decimal reservePrice, DateTime auctionEnd)
-    {
-        Seller = seller;
-        ReservePrice = reservePrice;
-        AuctionEnd = auctionEnd;
-    }
-
     public Guid Id { get; set; }
 
-    public string Seller { get; set; }
-    public string? Winner { get; set; } = null!;
+    public string Seller { get; set; } = null!;
+    public string? Winner { get; set; }
 
     public decimal ReservePrice { get; set; }
     public int? SoldAmount { get; set; }

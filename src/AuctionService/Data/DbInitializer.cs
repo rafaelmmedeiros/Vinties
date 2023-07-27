@@ -18,22 +18,43 @@ public class DbInitializer
 
           var auctions = new List<Auction>
           {
-               new Auction("Mark", 2000, DateTime.UtcNow.AddDays(7))
+               new Auction
                {
                     Id = Guid.NewGuid(),
-                    Item = new AuctionItem(
-                         "Stratocaster", "Fender", "A classic guitar", 
-                         AuctionItemType.Guitar, "123456", 1985, "Red", 
-                         "https://1.bp.blogspot.com/-305fBVmguqg/YGYOPgjJHHI/AAAAAAAAM7s/XFGr5UW2Q5cnXtfmV1m01tDjKYNPnFXZQCLcBGAsYHQ/s1600/Fender%2BStratocaster%2BCandy%2BApple%2BRed%2Bmatching%2Bheadstock.jpg")
-                    { Id = Guid.NewGuid(), }
+                    Seller = "Mark",
+                    ReservePrice = 2000,
+                    Status = AuctionStatus.Live,
+                    Item = new AuctionItem
+                    {
+                         Id = Guid.NewGuid(),
+                         Model = "Stratocaster",
+                         Manufacturer = "Fender",
+                         Description = "A classic guitar",
+                         Type = AuctionItemType.Guitar,
+                         SerialNumber = "123456",
+                         Year = 1985,
+                         Color = "Red",
+                         ImageUrl = "https://1.bp.blogspot.com/-305fBVmguqg/YGYOPgjJHHI/AAAAAAAAM7s/XFGr5UW2Q5cnXtfmV1m01tDjKYNPnFXZQCLcBGAsYHQ/s1600/Fender%2BStratocaster%2BCandy%2BApple%2BRed%2Bmatching%2Bheadstock.jpg"
+                    }
                },
-               new Auction("John", 1000, DateTime.UtcNow.AddDays(30))
+               new Auction
                {
                     Id = Guid.NewGuid(),
-                    Item = new AuctionItem("Les Paul", "Gibson", "A classic guitar", 
-                         AuctionItemType.Guitar, "123456", 1985, "Red", 
-                         "https://cdn.awsli.com.br/2500x2500/1005/1005709/produto/151107154/img_1043-lgrhxr.jpg")
-                    { Id = Guid.NewGuid(), }
+                    Seller = "John",
+                    ReservePrice = 1000,
+                    Status = AuctionStatus.Live,
+                    Item = new AuctionItem
+                    {
+                         Id = Guid.NewGuid(),
+                         Model = "Les Paul",
+                         Manufacturer = "Gibson",
+                         Description = "A classic guitar",
+                         Type = AuctionItemType.Guitar,
+                         SerialNumber = "123456",
+                         Year = 1985,
+                         Color = "Red",
+                         ImageUrl = "https://www.gibson.com/GibsonTV/Epiphone/Epiphone%20Les%20Paul%20Standard%2050s%20-%20Vintage%20Sunburst/Epiphone%20Les%20Paul%20Standard%2050s%20-%20Vintage%20Sunburst%20-%20Front%20Full.jpg"
+                    }
                }
           };
           
