@@ -75,4 +75,20 @@ public class AuctionsController : ControllerBase
 
         return Ok();
     }
+    
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> DeleteAuction(Guid id)
+    {
+        var auction = await _context.Auctions
+            .Include(auction => auction.Item)
+            .FirstOrDefaultAsync(auction => auction.Id == id);
+
+        if (auction == null) return NotFound();
+
+        _context.Auctions.Remove(auction);
+        var result = await _context.SaveChangesAsync() > 0;
+        if (!result) return BadRequest("Failed to delete auction");
+
+        return Ok();
+    }
 }
