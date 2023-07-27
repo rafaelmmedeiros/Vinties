@@ -11,7 +11,7 @@ public class Auction : Entity
     public int? CurrentHigBid { get; set; }
     public DateTime Created { get; set; }
     public DateTime? Updated { get; set; }
-    public DateTime? AuctionEnded { get; set; }
+    public DateTime? AuctionEnd { get; set; }
     public string Status { get; set; } = null!;
     
     public string Model { get; set; } = null!;
