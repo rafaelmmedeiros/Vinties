@@ -109,7 +109,7 @@ namespace AuctionService.Data.Migrations
             modelBuilder.Entity("AuctionService.Entities.AuctionItem", b =>
                 {
                     b.HasOne("AuctionService.Entities.Auction", "Auction")
-                        .WithOne("Item")
+                        .WithOne("AuctionItem")
                         .HasForeignKey("AuctionService.Entities.AuctionItem", "AuctionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -119,7 +119,7 @@ namespace AuctionService.Data.Migrations
 
             modelBuilder.Entity("AuctionService.Entities.Auction", b =>
                 {
-                    b.Navigation("Item")
+                    b.Navigation("AuctionItem")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

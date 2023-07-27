@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AuctionService.Data.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20230726225627_Initial")]
+    [Migration("20230726235921_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -112,7 +112,7 @@ namespace AuctionService.Data.Migrations
             modelBuilder.Entity("AuctionService.Entities.AuctionItem", b =>
                 {
                     b.HasOne("AuctionService.Entities.Auction", "Auction")
-                        .WithOne("Item")
+                        .WithOne("AuctionItem")
                         .HasForeignKey("AuctionService.Entities.AuctionItem", "AuctionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -122,7 +122,7 @@ namespace AuctionService.Data.Migrations
 
             modelBuilder.Entity("AuctionService.Entities.Auction", b =>
                 {
-                    b.Navigation("Item")
+                    b.Navigation("AuctionItem")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
