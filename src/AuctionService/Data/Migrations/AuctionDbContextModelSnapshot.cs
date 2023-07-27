@@ -50,7 +50,7 @@ namespace AuctionService.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Winner")
@@ -109,7 +109,7 @@ namespace AuctionService.Data.Migrations
             modelBuilder.Entity("AuctionService.Entities.AuctionItem", b =>
                 {
                     b.HasOne("AuctionService.Entities.Auction", "Auction")
-                        .WithOne("AuctionItem")
+                        .WithOne("Item")
                         .HasForeignKey("AuctionService.Entities.AuctionItem", "AuctionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -119,7 +119,7 @@ namespace AuctionService.Data.Migrations
 
             modelBuilder.Entity("AuctionService.Entities.Auction", b =>
                 {
-                    b.Navigation("AuctionItem")
+                    b.Navigation("Item")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

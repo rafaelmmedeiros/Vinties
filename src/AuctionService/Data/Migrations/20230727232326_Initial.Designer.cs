@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AuctionService.Data.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20230726235921_Initial")]
+    [Migration("20230727232326_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -53,7 +53,7 @@ namespace AuctionService.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("Updated")
+                    b.Property<DateTime>("Updated")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Winner")
@@ -112,7 +112,7 @@ namespace AuctionService.Data.Migrations
             modelBuilder.Entity("AuctionService.Entities.AuctionItem", b =>
                 {
                     b.HasOne("AuctionService.Entities.Auction", "Auction")
-                        .WithOne("AuctionItem")
+                        .WithOne("Item")
                         .HasForeignKey("AuctionService.Entities.AuctionItem", "AuctionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -122,7 +122,7 @@ namespace AuctionService.Data.Migrations
 
             modelBuilder.Entity("AuctionService.Entities.Auction", b =>
                 {
-                    b.Navigation("AuctionItem")
+                    b.Navigation("Item")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

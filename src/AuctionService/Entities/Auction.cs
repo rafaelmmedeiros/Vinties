@@ -12,7 +12,7 @@ public class Auction
     public int? CurrentHigBid { get; set; }
 
     public DateTime Created { get; set; } = DateTime.UtcNow;
-    public DateTime? Updated { get; set; }
+    public DateTime Updated { get; set; } = DateTime.UtcNow;
     public DateTime AuctionEnd { get; set; }
 
     public AuctionStatus Status { get; set; } = AuctionStatus.Live;
