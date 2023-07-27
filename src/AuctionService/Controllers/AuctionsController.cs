@@ -32,7 +32,7 @@ public class AuctionsController : ControllerBase
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<AuctionViewDto>> GetAuction(Guid id)
+    public async Task<ActionResult<AuctionViewDto>> GetAuctionById(Guid id)
     {
         var auction = await _context.Auctions
             .Include(auction => auction.Item)
@@ -44,14 +44,35 @@ public class AuctionsController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<AuctionViewDto>> CreateAuction(AuctionCreationDto auctionCreationDto)
+    public async Task<ActionResult<AuctionViewDto>> CreateAuction(AuctionCreationDto request)
     {
-        var auction = _mapper.Map<Auction>(auctionCreationDto);
+        var auction = _mapper.Map<Auction>(request);
         auction.Seller = "Mark";
         
         _context.Auctions.Add(auction);
-        await _context.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync() > 0;
+        if (!result) return BadRequest("Failed to create auction");
 
-        return CreatedAtAction(nameof(GetAuction), new {id = auction.Id}, _mapper.Map<AuctionViewDto>(auction));
+        return CreatedAtAction(nameof(GetAuctionById), new {id = auction.Id}, _mapper.Map<AuctionViewDto>(auction));
+    }
+    
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult> UpdateAuction(Guid id, AuctionUpdateDto request)
+    {
+        var auction = await _context.Auctions
+            .Include(auction => auction.Item)
+            .FirstOrDefaultAsync(auction => auction.Id == id);
+
+        if (auction == null) return NotFound();
+
+        auction.Item.Description = request.Description ?? auction.Item.Description;
+        auction.Item.ImageUrl = request.ImageUrl ?? auction.Item.ImageUrl;
+        auction.Item.SerialNumber = request.SerialNumber ?? auction.Item.SerialNumber;
+        auction.Updated = DateTime.UtcNow;
+        
+        var result = await _context.SaveChangesAsync() > 0;
+        if (!result) return BadRequest("Failed to update auction");
+
+        return Ok();
     }
 }
