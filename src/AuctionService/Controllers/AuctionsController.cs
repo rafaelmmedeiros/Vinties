@@ -49,7 +49,7 @@ public class AuctionsController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<AuctionDto>> CreateAuction(AuctionCreationDto request)
+    public async Task<ActionResult<AuctionDto>> CreateAuction([FromBody]AuctionCreationDto request)
     {
         var auction = _mapper.Map<Auction>(request);
         auction.Seller = "Mark";
@@ -66,7 +66,7 @@ public class AuctionsController : ControllerBase
     }
     
     [HttpPut("{id:guid}")]
-    public async Task<ActionResult> UpdateAuction(Guid id, AuctionUpdateDto request)
+    public async Task<ActionResult> UpdateAuction([FromRoute]Guid id, [FromBody]AuctionUpdateDto request)
     {
         var auction = await _context.Auctions
             .Include(auction => auction.Item)
@@ -79,6 +79,8 @@ public class AuctionsController : ControllerBase
         auction.Item.SerialNumber = request.SerialNumber ?? auction.Item.SerialNumber;
         auction.Updated = DateTime.UtcNow;
         
+        await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
+        
         var result = await _context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Failed to update auction");
 
@@ -86,7 +88,7 @@ public class AuctionsController : ControllerBase
     }
     
     [HttpDelete("{id:guid}")]
-    public async Task<ActionResult> DeleteAuction(Guid id)
+    public async Task<ActionResult> DeleteAuction([FromRoute]Guid id)
     {
         var auction = await _context.Auctions
             .Include(auction => auction.Item)
@@ -95,6 +97,8 @@ public class AuctionsController : ControllerBase
         if (auction == null) return NotFound();
 
         _context.Auctions.Remove(auction);
+        await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+        
         var result = await _context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Failed to delete auction");
 
