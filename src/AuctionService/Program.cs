@@ -12,11 +12,17 @@ builder.Services.AddDbContext<AuctionDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddMassTransit(x =>
+builder.Services.AddMassTransit(busConfig =>
 {
-    x.UsingRabbitMq((context, cfg) =>
+    busConfig.AddEntityFrameworkOutbox<AuctionDbContext>(config =>
     {
-        cfg.ConfigureEndpoints(context);
+        config.QueryDelay = TimeSpan.FromMilliseconds(10);
+        config.UsePostgres();
+        config.UseBusOutbox();
+    });
+    busConfig.UsingRabbitMq((context, config) =>
+    {
+        config.ConfigureEndpoints(context);
     });
 });
     

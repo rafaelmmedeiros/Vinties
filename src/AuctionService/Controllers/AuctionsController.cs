@@ -55,12 +55,13 @@ public class AuctionsController : ControllerBase
         auction.Seller = "Mark";
         
         _context.Auctions.Add(auction);
-        var result = await _context.SaveChangesAsync() > 0;
-        if (!result) return BadRequest("Failed to create auction");
-
+        
         var newAuction = _mapper.Map<AuctionDto>(auction);
         await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction)); // Publish event to message bus
-
+        
+        var result = await _context.SaveChangesAsync() > 0;
+        if (!result) return BadRequest("Failed to create auction");
+        
         return CreatedAtAction(nameof(GetAuctionById), new {id = auction.Id}, newAuction);
     }
     
