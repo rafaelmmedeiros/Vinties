@@ -17,8 +17,12 @@ public class AuctionCreatedConsumer : IConsumer<AuctionCreated>
 
     public async Task Consume(ConsumeContext<AuctionCreated> context)
     {
-        Console.WriteLine("---> Consuming AuctionCreated: " + context.Message.Id);
+        Console.WriteLine("---> AuctionCreatedConsumer " + context.Message.Id);
         var auction = _mapper.Map<Auction>(context.Message);
+
+        // Test purpose
+        if (auction.Brand == "Foo") throw new ArgumentException("Foo is not a valid brand");
+        
         await auction.SaveAsync();
     }
 }
