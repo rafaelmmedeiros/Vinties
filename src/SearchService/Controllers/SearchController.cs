@@ -20,7 +20,7 @@ public class SearchController : ControllerBase
         
         query = searchParams.OrderBy switch
         {
-            "model" => query.Sort(auction => auction.Ascending(field => field.Model)),
+            "brand" => query.Sort(auction => auction.Ascending(field => field.Brand)),
             "new" => query.Sort(auction => auction.Descending(field => field.Created)),
             _ => query.Sort(auction => auction.Ascending(field => field.AuctionEnd))
         };

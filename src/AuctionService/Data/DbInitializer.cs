@@ -29,7 +29,7 @@ public class DbInitializer
                     {
                          Id = Guid.NewGuid(),
                          Model = "Stratocaster",
-                         Manufacturer = "Fender",
+                         Brand = "Fender",
                          Description = "A classic guitar",
                          Type = AuctionItemType.Guitar,
                          SerialNumber = "123456",
@@ -49,7 +49,7 @@ public class DbInitializer
                     {
                          Id = Guid.NewGuid(),
                          Model = "Les Paul",
-                         Manufacturer = "Gibson",
+                         Brand = "Gibson",
                          Description = "A classic guitar",
                          Type = AuctionItemType.Guitar,
                          SerialNumber = "123456",

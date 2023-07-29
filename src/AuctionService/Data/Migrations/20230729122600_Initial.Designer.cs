@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AuctionService.Data.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20230728113950_Initial")]
+    [Migration("20230729122600_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -73,6 +73,10 @@ namespace AuctionService.Data.Migrations
                     b.Property<Guid>("AuctionId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("text");
@@ -82,10 +86,6 @@ namespace AuctionService.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Manufacturer")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Model")

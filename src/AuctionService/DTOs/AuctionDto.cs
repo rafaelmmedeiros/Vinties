@@ -14,7 +14,7 @@ public class AuctionDto
     public string Status { get; set; } = null!;
     
     public string Model { get; set; } = null!;
-    public string Manufacturer { get; set; } = null!;
+    public string Brand { get; set; } = null!;
     public string Description { get; set; } = null!;
     public string Type { get; set; } = null!;
     public string? SerialNumber { get; set; }

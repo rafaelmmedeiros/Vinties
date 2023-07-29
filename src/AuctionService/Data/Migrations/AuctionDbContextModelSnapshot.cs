@@ -70,6 +70,10 @@ namespace AuctionService.Data.Migrations
                     b.Property<Guid>("AuctionId")
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("text");
@@ -79,10 +83,6 @@ namespace AuctionService.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Manufacturer")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Model")

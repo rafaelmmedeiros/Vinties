@@ -14,7 +14,7 @@ public class DbInitializer
 
         await DB.Index<Auction>()
             .Key(a => a.Model, KeyType.Text)
-            .Key(a => a.Manufacturer, KeyType.Text)
+            .Key(a => a.Brand, KeyType.Text)
             .CreateAsync();
 
         var count = await DB.CountAsync<Auction>();

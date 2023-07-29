@@ -5,7 +5,7 @@ public class AuctionItem
     public Guid Id { get; set; }
 
     public string Model { get; set; } = null!;
-    public string Manufacturer { get; set; } = null!;
+    public string Brand { get; set; } = null!;
     public string Description { get; set; } = null!;
     public AuctionItemType Type { get; set; }
     
