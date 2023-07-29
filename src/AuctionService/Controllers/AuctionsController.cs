@@ -57,7 +57,7 @@ public class AuctionsController : ControllerBase
         _context.Auctions.Add(auction);
         
         var newAuction = _mapper.Map<AuctionDto>(auction);
-        await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction)); // Publish event to message bus
+        await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
         
         var result = await _context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Failed to create auction");
