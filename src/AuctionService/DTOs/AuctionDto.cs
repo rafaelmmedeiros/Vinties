@@ -1,6 +1,6 @@
 ﻿namespace AuctionService.DTOs;
 
-public class AuctionViewDto
+public class AuctionDto
 {
     public Guid Id { get; set; }
     public string Seller { get; set; } = null!;
@@ -9,7 +9,7 @@ public class AuctionViewDto
     public int? SoldAmount { get; set; }
     public int? CurrentHigBid { get; set; }
     public DateTime Created { get; set; }
-    public DateTime? Updated { get; set; }
+    public DateTime Updated { get; set; }
     public DateTime AuctionEnd { get; set; }
     public string Status { get; set; } = null!;
     

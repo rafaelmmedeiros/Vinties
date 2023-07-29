@@ -22,18 +22,18 @@ public class AuctionsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<AuctionViewDto>>> GetAuctions(string? date)
+    public async Task<ActionResult<List<AuctionDto>>> GetAuctions(string? date)
     {
         var queryable = _context.Auctions.OrderBy(auction => auction.AuctionEnd).AsQueryable();
 
         if (!string.IsNullOrEmpty(date))
             queryable = queryable.Where(auction => auction.Updated.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
         
-        return Ok(await queryable.ProjectTo<AuctionViewDto>(_mapper.ConfigurationProvider).ToListAsync());
+        return Ok(await queryable.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync());
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<ActionResult<AuctionViewDto>> GetAuctionById(Guid id)
+    public async Task<ActionResult<AuctionDto>> GetAuctionById(Guid id)
     {
         var auction = await _context.Auctions
             .Include(auction => auction.Item)
@@ -41,11 +41,11 @@ public class AuctionsController : ControllerBase
 
         if (auction == null) return NotFound();
 
-        return Ok(_mapper.Map<AuctionViewDto>(auction));
+        return Ok(_mapper.Map<AuctionDto>(auction));
     }
     
     [HttpPost]
-    public async Task<ActionResult<AuctionViewDto>> CreateAuction(AuctionCreationDto request)
+    public async Task<ActionResult<AuctionDto>> CreateAuction(AuctionCreationDto request)
     {
         var auction = _mapper.Map<Auction>(request);
         auction.Seller = "Mark";
@@ -54,7 +54,7 @@ public class AuctionsController : ControllerBase
         var result = await _context.SaveChangesAsync() > 0;
         if (!result) return BadRequest("Failed to create auction");
 
-        return CreatedAtAction(nameof(GetAuctionById), new {id = auction.Id}, _mapper.Map<AuctionViewDto>(auction));
+        return CreatedAtAction(nameof(GetAuctionById), new {id = auction.Id}, _mapper.Map<AuctionDto>(auction));
     }
     
     [HttpPut("{id:guid}")]

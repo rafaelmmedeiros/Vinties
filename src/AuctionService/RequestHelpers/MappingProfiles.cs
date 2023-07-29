@@ -8,8 +8,8 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<Auction, AuctionViewDto>().IncludeMembers(auction => auction.Item);
-        CreateMap<AuctionItem, AuctionViewDto>();
+        CreateMap<Auction, AuctionDto>().IncludeMembers(auction => auction.Item);
+        CreateMap<AuctionItem, AuctionDto>();
         CreateMap<AuctionCreationDto, Auction>()
             .ForMember(dest => dest.Item, opt => opt.MapFrom(src => src));
         CreateMap<AuctionCreationDto, AuctionItem>();

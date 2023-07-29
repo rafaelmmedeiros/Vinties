@@ -24,6 +24,7 @@ public class DbInitializer
                     Seller = "Mark",
                     ReservePrice = 2000,
                     Status = AuctionStatus.Live,
+                    AuctionEnd = DateTime.UtcNow.AddDays(7),
                     Item = new AuctionItem
                     {
                          Id = Guid.NewGuid(),
@@ -43,6 +44,7 @@ public class DbInitializer
                     Seller = "John",
                     ReservePrice = 1000,
                     Status = AuctionStatus.Live,
+                    AuctionEnd = DateTime.UtcNow.AddDays(10),
                     Item = new AuctionItem
                     {
                          Id = Guid.NewGuid(),
