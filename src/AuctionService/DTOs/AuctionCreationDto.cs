@@ -4,7 +4,7 @@ namespace AuctionService.DTOs;
 
 public class AuctionCreationDto
 {
-    [Required] public decimal ReservePrice { get; set; }
+    [Required] public int ReservePrice { get; set; }
     [Required] public DateTime AuctionEnd { get; set; }
     
     [Required] public string Model { get; set; } = null!;

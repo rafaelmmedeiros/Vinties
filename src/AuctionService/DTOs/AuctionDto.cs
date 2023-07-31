@@ -5,7 +5,7 @@ public class AuctionDto
     public Guid Id { get; set; }
     public string Seller { get; set; } = null!;
     public string? Winner { get; set; }
-    public decimal ReservePrice { get; set; }
+    public int ReservePrice { get; set; }
     public int? SoldAmount { get; set; }
     public int? CurrentHigBid { get; set; }
     public DateTime Created { get; set; }
