@@ -7,7 +7,7 @@ public class AuctionCreated
     public string Winner { get; set; }
     public int ReservePrice { get; set; }
     public int SoldAmount { get; set; }
-    public int CurrentHigBid { get; set; }
+    public int CurrentHighBid { get; set; }
     public DateTime Created { get; set; }
     public DateTime Updated { get; set; }
     public DateTime AuctionEnd { get; set; }
