@@ -10,7 +10,7 @@ async function fetchListings() {
 export default async function Listings() {
   const listings = await fetchListings()
   return (
-    <div>
+    <div className={'grid grid-cols-4 gap-6'}>
       {listings && listings.results.map((auction: any) => (
         <AuctionCard auction={auction} key={auction.id}/>
       ))}
