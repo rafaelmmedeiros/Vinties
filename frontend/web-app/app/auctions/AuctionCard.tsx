@@ -22,7 +22,6 @@ export default function AuctionCard({auction}: Props) {
         <h3 className={'text-gray-700'}>{auction.brand} {auction.type} {auction.model}</h3>
         <p className={'font-semibold text-sm'}>{auction.year}</p>
       </div>
-      
     </a>
   )
 }
