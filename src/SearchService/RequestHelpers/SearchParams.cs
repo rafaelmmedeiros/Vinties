@@ -6,7 +6,7 @@ public class SearchParams
     public string? Seller { get; set; }
     public string? Winner { get; set; }
 
-    public int Page { get; set; } = 1;
+    public int PageNumber { get; set; } = 1;
     public int PageSize { get; set; } = 10;
 
     public string? OrderBy { get; set; }

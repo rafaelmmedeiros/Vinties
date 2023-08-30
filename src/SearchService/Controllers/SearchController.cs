@@ -35,7 +35,7 @@ public class SearchController : ControllerBase
         if (!string.IsNullOrEmpty(searchParams.Seller)) query.Match(auction => auction.Seller == searchParams.Seller);
         if (!string.IsNullOrEmpty(searchParams.Winner)) query.Match(auction => auction.Winner == searchParams.Winner);
         
-        query.PageNumber(searchParams.Page).PageSize(searchParams.PageSize);
+        query.PageNumber(searchParams.PageNumber).PageSize(searchParams.PageSize);
         
         var results = await query.ExecuteAsync();
         return Ok(new
