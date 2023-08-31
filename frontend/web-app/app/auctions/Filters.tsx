@@ -18,32 +18,12 @@ const filterByButtons = [
 ];
 
 export default function Filters() {
-  
   const pageSize = useParamsStore(state => state.pageSize)
   const setParams = useParamsStore(state => state.setParams)
   const orderBy = useParamsStore(state => state.orderBy)
   const filterBy = useParamsStore(state => state.filterBy)
-  
   return (
-    
     <div className={'flex justify-between items-center mb-4'}>
-      <div>
-        <span className={'uppercase text-sm text-gray-500 mr-2'}>Order By</span>
-        <Button.Group>
-          {orderByButtons.map(({label, icon: Icon, value}) => (
-            <Button
-              key={value}
-              onClick={() => setParams({orderBy: value})}
-              color={`${orderBy === value ? 'red' : 'gray'}`}
-              className={'focus:ring-0'}
-            >
-              <Icon className={'mr-2 h-5 w-4'}/>
-              {label}
-            </Button>
-          ))}
-        </Button.Group>
-      </div>
-      
       <div>
         <span className={'uppercase text-sm text-gray-500 mr-2'}>Filter By</span>
         <Button.Group>
@@ -52,7 +32,6 @@ export default function Filters() {
               key={value}
               onClick={() => setParams({filterBy: value})}
               color={`${filterBy === value ? 'red' : 'gray'}`}
-              className={'focus:ring-0'}
             >
               <Icon className={'mr-2 h-5 w-4'}/>
               {label}
@@ -60,7 +39,21 @@ export default function Filters() {
           ))}
         </Button.Group>
       </div>
-      
+      <div>
+        <span className={'uppercase text-sm text-gray-500 mr-2'}>Order By</span>
+        <Button.Group>
+          {orderByButtons.map(({label, icon: Icon, value}) => (
+            <Button
+              key={value}
+              onClick={() => setParams({orderBy: value})}
+              color={`${orderBy === value ? 'red' : 'gray'}`}
+            >
+              <Icon className={'mr-2 h-5 w-4'}/>
+              {label}
+            </Button>
+          ))}
+        </Button.Group>
+      </div>
       <div>
         <span className={'uppercase text-sm text-gray-500 mr-2'}>Page Size</span>
         <Button.Group>
