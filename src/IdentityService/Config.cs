@@ -27,7 +27,7 @@ public static class Config
                 AllowedScopes = { "openid", "profile", "auctionApp" },
                 RedirectUris = { "https://www.getpostman.com/oauth2/callback" },
                 ClientSecrets = new[] { new Secret("NotASecret".Sha256()) },
-                AllowedGrantTypes = { GrantType.ResourceOwnerPassword },
+                AllowedGrantTypes = { GrantType.ResourceOwnerPassword }
             },
             new Client
             {
@@ -40,6 +40,7 @@ public static class Config
                 AllowOfflineAccess = true,
                 AllowedScopes = {"openid", "profile", "auctionApp"},
                 AccessTokenLifetime = 3600 * 24 * 30,
+                AlwaysIncludeUserClaimsInIdToken = true
             }
         };
 }
