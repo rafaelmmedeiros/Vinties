@@ -1,4 +1,5 @@
 ﻿import {SiBandsintown} from "react-icons/si";
+import Search from "@/app/nav/Search";
 
 export default function NavBar() {
   return (
@@ -7,9 +8,7 @@ export default function NavBar() {
         <SiBandsintown size={36}/>
         <div>Vinties Auctions</div>
       </div>
-      <div>
-        Search
-      </div>
+      <Search/>
       <div>
         Login
       </div>
