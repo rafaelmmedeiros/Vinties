@@ -1,6 +1,7 @@
 ﻿'use server'
 
 import {Auction, PagedResult} from "@/types";
+import {getTokenWorkaround} from "@/app/actions/authActions";
 
 export async function getData(query: string): Promise<PagedResult<Auction>> {
   const response = await fetch(`http://localhost:6001/search${query}`)
@@ -14,9 +15,15 @@ export async function UpdateAuctionTest() {
     serialNumber: "test123",
   }
   
+  const token = await getTokenWorkaround()
+  
   const response = await fetch(`http://localhost:6001/auctions/ec6c830a-b6e9-4a07-8560-533bc08e3d07`, {
     method: 'PUT',
-    headers: {},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token?.access_token
+      
+    },
     body: JSON.stringify(data)
   })
   
