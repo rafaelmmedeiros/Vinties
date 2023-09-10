@@ -7,7 +7,7 @@ import UserActions from "@/app/nav/UserActions";
 export default async function NavBar() {
   const user = await getCurrentUser()
   return (
-    <header className={'sticky top-0 flex justify-between p-5 items-center shadow-md'}>
+    <header className={'sticky top-0 flex justify-between p-5 items-center shadow-md z-50'}>
       <Logo/>
       <Search/>
       {user ? (
